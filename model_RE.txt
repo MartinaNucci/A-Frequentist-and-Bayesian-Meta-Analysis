@@ -1,0 +1,14 @@
+model
+
+{
+  for (i in 1:N) {
+    varinv[i] <- 1/(se.hat[i]*se.hat[i]);
+    beta.hat[i]  ~    dnorm(beta[i],varinv[i]);
+    beta[i]  ~    dnorm(b,prec)}   
+  
+  b ~ dnorm(0.0,1.0E-6);
+  prec ~ dgamma(0.001,0.001);
+  tau2 <- 1/prec;
+  beta.pred ~    dnorm(b,prec)
+  
+}

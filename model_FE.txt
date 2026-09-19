@@ -1,0 +1,12 @@
+model
+
+{
+   for (i in 1:N) {
+      varinv[i] <- 1/(se.hat[i]*se.hat[i])
+      beta.hat[i]  ~    dnorm(b,varinv[i])
+      }   
+
+   b ~ dnorm(0.0,1.0E-6)
+   
+  }
+

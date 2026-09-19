@@ -1,0 +1,16 @@
+model
+{
+   for (i in 1:N) {
+      varinv[i] <- 1/(se.hat[i]^2)
+      beta.hat[i]   ~    dnorm(beta[i],varinv[i]) 
+      beta[i] ~ dnorm(alpha[i],prec)
+      alpha[i]   <-   b+gamma*x[i]
+       } 
+
+  gamma ~ dnorm(0.0,0.0001)
+  b     ~ dnorm(0.0,1.0E-6)
+  prec  ~ dgamma(0.001,0.001)
+  tau2   <- 1/prec
+
+ }
+
